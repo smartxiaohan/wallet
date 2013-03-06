@@ -89,10 +89,29 @@ save()
 	printf "%s" "$content" | openssl aes-256-cbc -salt -pass env:wallet_token -out "$wallet_file"
 }
 
+change_password()
+{
+	printf "请输入当前的密码："
+	read -r -s token
+	if [ "$token" != "$wallet_token" ]; then
+		printf "\n密码错误！\n"
+		return 1
+	fi
+	printf "\n请输入新密码："
+	read -r -s new_token
+	printf "\n请确认新密码："
+	read -r -s token
+	if [ "$token" != "$new_token" ]; then
+		printf "\n两次输入的密码不一致！\n"
+		return 1
+	fi
+	wallet_token="$new_token"
+}
+
 usage()
 {
 	echo '用法：wallet.sh'
-	echo '命令: new, rm, update, show, ls, quit'
+	echo '命令: new, rm, update, show, ls, passwd, quit'
 }
 
 if [ "$#" -gt "0" ]; then
@@ -146,6 +165,7 @@ do
 		"update" ) update ;;
 		"show"   ) show ;;
 		"ls"     ) list ;;
+		"passwd" ) change_password ;;
 		""       ) clear; usage ;;
 		"quit"   )
 			echo; save
