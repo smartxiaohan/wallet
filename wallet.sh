@@ -12,7 +12,7 @@ input_name()
 		echo "名称不能为空！"
 		return 1
 	fi
-	printf "%s" "$name" | grep '[[:punct:]	]' >/dev/null 2>&1
+	printf "%s" "$name" | grep '[ [:punct:]	]' >/dev/null 2>&1
 	if [ "$?" -ne "1" ]; then
 		echo "名称不能包含标点符号和空格！"
 		return 1
