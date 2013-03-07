@@ -112,12 +112,16 @@ usage()
 	echo '命令: new, rm, update, show, passwd, quit'
 }
 
-if [ "$#" -gt "0" ]; then
-	usage
+if [ "$#" -gt "1" ]; then
+	echo "格式：$0 [<钱包文件路径>]"
+	echo
 	exit 1
+elif [ "$#" -eq "1" ]; then
+	wallet_file="$1"
+else
+	wallet_file="$HOME/.wallet-posixfung"
 fi
 
-wallet_file="$HOME/.wallet-posixfung"
 if [ -f "$wallet_file" ]; then
 	printf "请输入钱包密码："
 	read -r -s wallet_token
