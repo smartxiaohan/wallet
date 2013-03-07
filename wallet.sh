@@ -112,7 +112,7 @@ change_password()
 
 usage()
 {
-	echo '用法：wallet.sh'
+	echo '基于 openssl 的密码管理脚本(bash)'
 	echo '命令: new, rm, update, show, passwd, quit'
 }
 
@@ -172,6 +172,6 @@ do
 			echo; save
 			content=""; export wallet_token=""; exit 0
 			;;
-		* ) usage ;;
+		* ) printf "无效命令：%s\n" "$cmd"; usage ;;
 	esac
 done
