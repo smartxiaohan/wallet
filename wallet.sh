@@ -119,7 +119,7 @@ if [ "$#" -gt "1" ]; then
 elif [ "$#" -eq "1" ]; then
 	wallet_file="$1"
 else
-	wallet_file="$HOME/.wallet-posixfung"
+	wallet_file="$HOME/.wallet-default"
 fi
 
 if [ -f "$wallet_file" ]; then
