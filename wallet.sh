@@ -113,7 +113,7 @@ change_password()
 usage()
 {
 	echo '用法：wallet.sh'
-	echo '命令: new, rm, update, show, ls, passwd, quit'
+	echo '命令: new, rm, update, show, passwd, quit'
 }
 
 if [ "$#" -gt "0" ]; then
@@ -166,7 +166,6 @@ do
 		"rm"     ) delete ;;
 		"update" ) update ;;
 		"show"   ) show ;;
-		"ls"     ) list ;;
 		"passwd" ) change_password ;;
 		""       ) clear; usage ;;
 		"quit"   )
