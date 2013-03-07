@@ -106,6 +106,8 @@ change_password()
 		return 1
 	fi
 	wallet_token="$new_token"
+	printf "\n修改密码成功！\n"
+	return 0
 }
 
 usage()
