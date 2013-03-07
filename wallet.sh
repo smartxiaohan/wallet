@@ -12,9 +12,9 @@ input_name()
 		echo "名称不能为空！"
 		return 1
 	fi
-	printf "%s" "$name" | grep '[ [:punct:]	]' >/dev/null 2>&1
+	printf "%s" "$name" | grep '[[:punct:]]' >/dev/null 2>&1
 	if [ "$?" -ne "1" ]; then
-		echo "名称不能包含标点符号和空格！"
+		echo "名称不能包含标点符号！"
 		return 1
 	fi
 	return 0
@@ -23,16 +23,22 @@ input_name()
 get_name()
 {
 	if [ "$#" = "0" ]; then
+		OLD_IFS="$IFS"
+		IFS='
+'
 		select opt in `list`
 		do
 			if [ -n "$opt" ]; then
 				name="$opt"
+				IFS="$OLD_IFS"
 				return 0
 			else
 				echo "操作取消"
+				IFS="$OLD_IFS"
 				return 1
 			fi
 		done
+		IFS="$OLD_IFS"
 	else
 		name="$1"
 		return 0
