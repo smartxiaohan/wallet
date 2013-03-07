@@ -50,11 +50,7 @@ create()
 	fi
 	printf "%s 的值：" "$name"
 	read -r -s value
-	if [ -z "$content" ]; then
-		content=`printf "%s%s" "$content" "$name: $value"`
-	else
-		content=`printf "%s\n%s" "$content" "$name: $value"`
-	fi
+	content=`printf "%s\n%s" "$name: $value" "$content"`
 	echo
 }
 
